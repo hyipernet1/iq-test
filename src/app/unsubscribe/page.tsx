@@ -1,0 +1,20 @@
+import { Metadata } from "next";
+import Unsubscribe from "./Unsubscribe";
+import Container from "@/components/container";
+import Image from "next/image";
+
+export const metadata: Metadata = {
+  title: "IQ Test - Contact Us",
+};
+
+const LoginPage: React.FC = () => {
+  return (
+    <section className="py-10 min-h-[75vh] bg-gradient-to-tl from-[#d7d7d7] to-background">
+      <Container>
+        <Unsubscribe className="w-full" />
+      </Container>
+    </section>
+  );
+};
+
+export default LoginPage;
