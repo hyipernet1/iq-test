@@ -12,17 +12,17 @@ const Faq: React.FC<FaqProps> = ({ className }) => {
   return (
     <section
       className={clsx(
-        "py-20 bg-gradient-to-bl from-[#d7d7d7] to-background",
+        "py-20 bg-gradient-to-bl from-[#d7d7d7] to-background overflow-hidden",
         className
       )}
     >
-      <Container className="overflow-x-hidden flex flex-col items-center gap-20">
+      <Container className="overflow-hidden flex flex-col items-center gap-20">
         <header className="w-full">
           <h2 className="font-bold text-3xl text-center" data-aos="fade-down">
             Frequently Asked Questions
           </h2>
         </header>
-        <div className="overflow-x-hidden grid grid-cols-2 grid-rows-2 gap-10 w-full max-md:grid-cols-1 max-md:[&>div]:text-center max-md:px-12 max-[500px]:px-3">
+        <div className="overflow-hidden grid grid-cols-2 grid-rows-2 gap-10 w-full max-md:grid-cols-1 max-md:[&>div]:text-center max-md:px-12 max-[500px]:px-3">
           <div className="text-left" data-aos="fade-right">
             <h3 className="font-bold text-2xl">
               What is the purpose of this IQ test?

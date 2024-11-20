@@ -17,8 +17,8 @@ const Hero: React.FC<HeroProps> = ({ className }) => {
         className
       )}
     >
-      <Container className="flex items-start justify-between gap-5">
-        <div data-aos="fade-right" className="w-[60%] max-lg:w-[80%] flex flex-col gap-7 max-md:w-full max-md:text-center">
+      <Container className="flex items-start justify-between gap-5 overflow-hidden">
+        <div data-aos="fade-right" className="w-[60%] overflow-hidden max-lg:w-[80%] flex flex-col gap-7 max-md:w-full max-md:text-center">
           <h2 className="text-6xl font-bold max-sm:text-4xl">
             Your Intelligence,
             <br />
@@ -39,7 +39,7 @@ const Hero: React.FC<HeroProps> = ({ className }) => {
             </Link>
           </Button>
         </div>
-        <div data-aos="fade-left" className="relative w-1/2 h-[400px] max-md:hidden">
+        <div data-aos="fade-left" className="overflow-hidden relative w-1/2 h-[400px] max-md:hidden">
           <Image
             src="/iq.png"
             fill
