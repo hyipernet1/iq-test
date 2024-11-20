@@ -10,15 +10,20 @@ interface FaqProps {
 
 const Faq: React.FC<FaqProps> = ({ className }) => {
   return (
-    <section className={clsx("py-20 bg-gradient-to-bl from-[#d7d7d7] to-background", className)}>
-      <Container className="flex flex-col items-center gap-20">
+    <section
+      className={clsx(
+        "py-20 bg-gradient-to-bl from-[#d7d7d7] to-background",
+        className
+      )}
+    >
+      <Container className="overflow-x-hidden flex flex-col items-center gap-20">
         <header className="w-full">
-          <h2 className="font-bold text-3xl text-center">
+          <h2 className="font-bold text-3xl text-center" data-aos="fade-down">
             Frequently Asked Questions
           </h2>
         </header>
-        <div className="grid grid-cols-2 grid-rows-2 gap-10 w-full max-md:grid-cols-1 max-md:[&>div]:text-center max-md:px-12 max-[500px]:px-3">
-          <div className="text-left">
+        <div className="overflow-x-hidden grid grid-cols-2 grid-rows-2 gap-10 w-full max-md:grid-cols-1 max-md:[&>div]:text-center max-md:px-12 max-[500px]:px-3">
+          <div className="text-left" data-aos="fade-right">
             <h3 className="font-bold text-2xl">
               What is the purpose of this IQ test?
             </h3>
@@ -29,7 +34,7 @@ const Faq: React.FC<FaqProps> = ({ className }) => {
               level based on scientifically validated methods.
             </p>
           </div>
-          <div className="text-left">
+          <div className="text-left" data-aos="fade-left">
             <h3 className="font-bold text-2xl">
               How long does the test take to complete?
             </h3>
@@ -39,7 +44,7 @@ const Faq: React.FC<FaqProps> = ({ className }) => {
               precise results without taking too much of your time.
             </p>
           </div>
-          <div className="text-left">
+          <div className="text-left" data-aos="fade-right" data-aos-delay="250">
             <h3 className="font-bold text-2xl">
               How are the results calculated?
             </h3>
@@ -50,7 +55,7 @@ const Faq: React.FC<FaqProps> = ({ className }) => {
               others in your age group.
             </p>
           </div>
-          <div className="text-left">
+          <div className="text-left" data-aos-delay="250" data-aos="fade-left">
             <h3 className="font-bold text-2xl">
               Is this test suitable for everyone?
             </h3>
@@ -61,7 +66,10 @@ const Faq: React.FC<FaqProps> = ({ className }) => {
             </p>
           </div>
         </div>
-        <Button className="w-1/3 justify-center flex px-12 py-4 group text-2xl border-2 hover:border-primary hover:bg-transparent hover:text-foreground max-md:py-2 max-md:text-base max-md:w-2/3 max-[400px]:w-[80%]">
+        <Button
+          data-aos="fade-up"
+          className="w-1/3 justify-center flex px-12 py-4 group text-2xl border-2 hover:border-primary hover:bg-transparent hover:text-foreground max-md:py-2 max-md:text-base max-md:w-2/3 max-[400px]:w-[80%]"
+        >
           <Link href="/test" className="flex items-center gap-4">
             Test Your IQ
             <ArrowRightIcon

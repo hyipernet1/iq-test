@@ -18,7 +18,7 @@ const Hero: React.FC<HeroProps> = ({ className }) => {
       )}
     >
       <Container className="flex items-start justify-between gap-5">
-        <div className="w-[60%] max-lg:w-[80%] flex flex-col gap-7 max-md:w-full max-md:text-center">
+        <div data-aos="fade-right" className="w-[60%] max-lg:w-[80%] flex flex-col gap-7 max-md:w-full max-md:text-center">
           <h2 className="text-6xl font-bold max-sm:text-4xl">
             Your Intelligence,
             <br />
@@ -39,7 +39,7 @@ const Hero: React.FC<HeroProps> = ({ className }) => {
             </Link>
           </Button>
         </div>
-        <div className="relative w-1/2 h-[400px] max-md:hidden">
+        <div data-aos="fade-left" className="relative w-1/2 h-[400px] max-md:hidden">
           <Image
             src="/iq.png"
             fill
@@ -50,16 +50,13 @@ const Hero: React.FC<HeroProps> = ({ className }) => {
         </div>
       </Container>
       <Container className="mt-20 flex w-full items-center justify-around [&>div_span]:text-7xl [&>div_span]:font-bold [&>div]:text-lg max-lg:grid max-lg:grid-cols-2 max-lg:gap-10 max-lg:w-full max-lg:text-center max-sm:grid-cols-1 max-sm:gap-6 max-sm:[&>div_span]:text-4xl">
-        <div>
-          <span>25</span> Questions
+        <div data-aos="fade-down" data-aos-delay='200' data-aos-offset='10'>
+          <span>20</span> Questions
         </div>
-        <div>
-          <span>20</span> Minutes max.
-        </div>
-        <div>
+        <div data-aos="fade-down" data-aos-delay='400' data-aos-offset='10'>
           <span>100%</span> Accurate
         </div>
-        <div>
+        <div data-aos="fade-down" data-aos-delay='500' data-aos-offset='10'>
           <span>106</span> average IQ
         </div>
       </Container>

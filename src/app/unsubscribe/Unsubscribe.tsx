@@ -1,6 +1,5 @@
 import Button from "@/components/ui/button";
 import Input from "@/components/ui/input";
-import Textarea from "@/components/ui/textarea";
 import clsx from "clsx";
 import { ArrowRightIcon } from "lucide-react";
 
@@ -10,7 +9,7 @@ interface UnsubscribeProps {
 
 const Unsubscribe: React.FC<UnsubscribeProps> = ({ className }) => {
   return (
-    <div className={clsx(className)}>
+    <div className={clsx(className)} data-aos="fade-down">
       <form className="bg-white px-4 rounded-md w-[60%] mx-auto py-14 max-sm:w-full">
         <h2 className="font-bold text-3xl text-center mb-8">Subscription cancellation request</h2>
         <p className="text-center text-neutral-500 -mt-5 mb-3 max-sm:text-sm">Enter your email address to cancel your subscription:</p>

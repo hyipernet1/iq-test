@@ -9,7 +9,7 @@ interface LoginProps {
 
 const Login: React.FC<LoginProps> = ({ className }) => {
   return (
-    <div className={clsx(className)}>
+    <div className={clsx(className)} data-aos="fade-right">
       <form className="bg-white px-4 rounded-md w-full mx-auto py-8">
         <h2 className="font-bold text-4xl text-center mb-8">Login</h2>
         <Input type="email" id="email" placeholder="Email" className="w-full" />

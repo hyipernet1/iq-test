@@ -11,9 +11,18 @@ const LoginPage: React.FC = () => {
   return (
     <section className="py-10 min-h-[75vh] bg-gradient-to-tl from-[#d7d7d7] to-background">
       <Container className="grid grid-cols-2 max-md:grid-cols-1 items-center gap-8 justify-between">
-        <Login className="w-full" />
-        <div className="w-full relative h-[400px] max-md:hidden">
-            <Image src='/brain.webp' fill sizes="100%, 100%" className="object-cover" alt="Log In" />
+        <Login className="w-full"/>
+        <div
+          className="w-full relative h-[400px] max-md:hidden"
+          data-aos="fade-left"
+        >
+          <Image
+            src="/brain.webp"
+            fill
+            sizes="100%, 100%"
+            className="object-cover"
+            alt="Log In"
+          />
         </div>
       </Container>
     </section>

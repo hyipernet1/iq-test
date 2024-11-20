@@ -18,9 +18,9 @@ const Plans: React.FC<PlansProps> = ({ className }) => {
     >
       <Container className="flex flex-col items-center gap-20">
         <header className="w-full">
-          <h2 className="font-bold text-3xl text-center">Our Plans</h2>
+          <h2 className="font-bold text-3xl text-center" data-aos="fade-down">Our Plans</h2>
         </header>
-        <div className="flex flex-col w-2/3 mx-auto items-center gap-10 bg-background rounded-md p-8 max-sm:w-[90%] max-[430px]:w-full">
+        <div data-aos="flip-left" data-aos-delay="100" className="flex flex-col w-2/3 mx-auto items-center gap-10 bg-background rounded-md p-8 max-sm:w-[90%] max-[430px]:w-full">
           <h3 className="font-bold text-2xl text-center">Monthly Plan</h3>
           <div className="text-center">
             <p className="text-lg">

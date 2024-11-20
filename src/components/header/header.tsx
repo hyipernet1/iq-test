@@ -30,6 +30,7 @@ const HeaderButtons = ({ className }: { className?: string }) => {
 const Header: React.FC<HeaderProps> = ({ className }) => {
   return (
     <header
+      data-aos="fade-down"
       className={clsx(
         "py-5 w-full border-b-[1px] border-[rgb(170, 170, 170)] bg-background text-foreground",
         className

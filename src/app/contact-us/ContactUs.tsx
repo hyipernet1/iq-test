@@ -9,7 +9,7 @@ interface ContactUsProps {
 
 const ContactUs: React.FC<ContactUsProps> = ({ className }) => {
   return (
-    <div className={clsx(className)}>
+    <div className={clsx(className)} data-aos="fade-right">
       <form className="bg-white px-4 rounded-md w-full mx-auto py-8">
         <h2 className="font-bold text-4xl text-center mb-8">Contact Us</h2>
         <div className="grid grid-cols-2 w-full gap-5 max-[500px]:grid-cols-1">
