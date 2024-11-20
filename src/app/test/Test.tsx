@@ -53,6 +53,186 @@ const Test: React.FC<TestProps> = ({ className }) => {
       ],
       questionImg: "/questions/1/img.webp",
     },
+    {
+      correct: 4,
+      variantsImg: [
+        "/questions/1/variants/1.png",
+        "/questions/1/variants/2.png",
+        "/questions/1/variants/3.png",
+        "/questions/1/variants/4.png",
+      ],
+      questionImg: "/questions/1/img.webp",
+    },
+    {
+      correct: 4,
+      variantsImg: [
+        "/questions/1/variants/1.png",
+        "/questions/1/variants/2.png",
+        "/questions/1/variants/3.png",
+        "/questions/1/variants/4.png",
+      ],
+      questionImg: "/questions/1/img.webp",
+    },
+    {
+      correct: 4,
+      variantsImg: [
+        "/questions/1/variants/1.png",
+        "/questions/1/variants/2.png",
+        "/questions/1/variants/3.png",
+        "/questions/1/variants/4.png",
+      ],
+      questionImg: "/questions/1/img.webp",
+    },
+    {
+      correct: 4,
+      variantsImg: [
+        "/questions/1/variants/1.png",
+        "/questions/1/variants/2.png",
+        "/questions/1/variants/3.png",
+        "/questions/1/variants/4.png",
+      ],
+      questionImg: "/questions/1/img.webp",
+    },
+    {
+      correct: 4,
+      variantsImg: [
+        "/questions/1/variants/1.png",
+        "/questions/1/variants/2.png",
+        "/questions/1/variants/3.png",
+        "/questions/1/variants/4.png",
+      ],
+      questionImg: "/questions/1/img.webp",
+    },
+    {
+      correct: 4,
+      variantsImg: [
+        "/questions/1/variants/1.png",
+        "/questions/1/variants/2.png",
+        "/questions/1/variants/3.png",
+        "/questions/1/variants/4.png",
+      ],
+      questionImg: "/questions/1/img.webp",
+    },
+    {
+      correct: 4,
+      variantsImg: [
+        "/questions/1/variants/1.png",
+        "/questions/1/variants/2.png",
+        "/questions/1/variants/3.png",
+        "/questions/1/variants/4.png",
+      ],
+      questionImg: "/questions/1/img.webp",
+    },
+    {
+      correct: 4,
+      variantsImg: [
+        "/questions/1/variants/1.png",
+        "/questions/1/variants/2.png",
+        "/questions/1/variants/3.png",
+        "/questions/1/variants/4.png",
+      ],
+      questionImg: "/questions/1/img.webp",
+    },
+    {
+      correct: 4,
+      variantsImg: [
+        "/questions/1/variants/1.png",
+        "/questions/1/variants/2.png",
+        "/questions/1/variants/3.png",
+        "/questions/1/variants/4.png",
+      ],
+      questionImg: "/questions/1/img.webp",
+    },
+    {
+      correct: 4,
+      variantsImg: [
+        "/questions/1/variants/1.png",
+        "/questions/1/variants/2.png",
+        "/questions/1/variants/3.png",
+        "/questions/1/variants/4.png",
+      ],
+      questionImg: "/questions/1/img.webp",
+    },
+    {
+      correct: 4,
+      variantsImg: [
+        "/questions/1/variants/1.png",
+        "/questions/1/variants/2.png",
+        "/questions/1/variants/3.png",
+        "/questions/1/variants/4.png",
+      ],
+      questionImg: "/questions/1/img.webp",
+    },
+    {
+      correct: 4,
+      variantsImg: [
+        "/questions/1/variants/1.png",
+        "/questions/1/variants/2.png",
+        "/questions/1/variants/3.png",
+        "/questions/1/variants/4.png",
+      ],
+      questionImg: "/questions/1/img.webp",
+    },
+    {
+      correct: 4,
+      variantsImg: [
+        "/questions/1/variants/1.png",
+        "/questions/1/variants/2.png",
+        "/questions/1/variants/3.png",
+        "/questions/1/variants/4.png",
+      ],
+      questionImg: "/questions/1/img.webp",
+    },
+    {
+      correct: 4,
+      variantsImg: [
+        "/questions/1/variants/1.png",
+        "/questions/1/variants/2.png",
+        "/questions/1/variants/3.png",
+        "/questions/1/variants/4.png",
+      ],
+      questionImg: "/questions/1/img.webp",
+    },
+    {
+      correct: 4,
+      variantsImg: [
+        "/questions/1/variants/1.png",
+        "/questions/1/variants/2.png",
+        "/questions/1/variants/3.png",
+        "/questions/1/variants/4.png",
+      ],
+      questionImg: "/questions/1/img.webp",
+    },
+    {
+      correct: 4,
+      variantsImg: [
+        "/questions/1/variants/1.png",
+        "/questions/1/variants/2.png",
+        "/questions/1/variants/3.png",
+        "/questions/1/variants/4.png",
+      ],
+      questionImg: "/questions/1/img.webp",
+    },
+    {
+      correct: 4,
+      variantsImg: [
+        "/questions/1/variants/1.png",
+        "/questions/1/variants/2.png",
+        "/questions/1/variants/3.png",
+        "/questions/1/variants/4.png",
+      ],
+      questionImg: "/questions/1/img.webp",
+    },
+    {
+      correct: 4,
+      variantsImg: [
+        "/questions/1/variants/1.png",
+        "/questions/1/variants/2.png",
+        "/questions/1/variants/3.png",
+        "/questions/1/variants/4.png",
+      ],
+      questionImg: "/questions/1/img.webp",
+    },
   ];
 
   const [questionsQuantity] = useState(questions.length);
