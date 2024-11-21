@@ -1,6 +1,5 @@
 "use client";
 
-import clsx from "clsx";
 import {
   createContext,
   Dispatch,
@@ -10,10 +9,6 @@ import {
 } from "react";
 import TestBody from "./TestBody";
 import { questions } from "./test.data";
-
-interface TestProps {
-  className?: string;
-}
 
 export type TQuestion = {
   correct: number;
@@ -32,7 +27,7 @@ const TestContext = createContext<{
 
 export const useTest = () => useContext(TestContext);
 
-const Test: React.FC<TestProps> = ({ className }) => {
+const Test: React.FC = () => {
   const [questionsQuantity] = useState(questions.length);
   const [currentQuestion, setCurrentQuestion] = useState(-1);
   const [score, setScore] = useState(0);
@@ -48,9 +43,7 @@ const Test: React.FC<TestProps> = ({ className }) => {
         questions,
       }}
     >
-      <div className={clsx(className)}>
-        <TestBody />
-      </div>
+      <TestBody />
     </TestContext.Provider>
   );
 };

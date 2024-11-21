@@ -53,6 +53,9 @@ const Hero: React.FC<HeroProps> = ({ className }) => {
         <div data-aos="fade-down" data-aos-delay='200' data-aos-offset='10'>
           <span>20</span> Questions
         </div>
+        <div data-aos="fade-down" data-aos-delay='300' data-aos-offset='10'>
+          <span>10</span> Minutes
+        </div>
         <div data-aos="fade-down" data-aos-delay='400' data-aos-offset='10'>
           <span>100%</span> Accurate
         </div>

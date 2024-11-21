@@ -2,33 +2,27 @@
 
 import clsx from "clsx";
 import Image from "next/image";
-import { TQuestion } from "./Test";
+import { TQuestion, useTest } from "./Test";
 import { Dispatch, SetStateAction } from "react";
 import toast from "react-hot-toast";
 
 interface TestCardProps {
   className?: string;
-  questions: TQuestion[];
-  currentQuestion: number;
-  questionsQuantity: number;
-  setCurrentQuestion: Dispatch<SetStateAction<number>>;
-  setScore: Dispatch<SetStateAction<number>>;
   setIsCompleted: Dispatch<SetStateAction<boolean>>;
 }
 
-const TestCard: React.FC<TestCardProps> = ({
-  className,
-  currentQuestion,
-  questionsQuantity,
-  questions,
-  setIsCompleted,
-  setCurrentQuestion,
-  setScore,
-}) => {
+const TestCard: React.FC<TestCardProps> = ({ className, setIsCompleted }) => {
+  const {
+    currentQuestion,
+    questionsQuantity,
+    questions,
+    setCurrentQuestion,
+    setScore,
+  } = useTest();
   return (
     <div
       className={clsx(
-        "h-[450px] w-full grid grid-cols-2 max-w-[1200px] mx-auto my-14 max-lg:grid-cols-1 max-lg:h-full max-lg:w-[600px] max-sm:w-[90%]",
+        "h-[450px] w-full grid grid-cols-2 max-w-[1200px] mx-auto my-14 max-[1200px]:grid-cols-1 max-[1200px]:h-full max-[1200px]:w-[600px] max-sm:w-[90%]",
         className
       )}
     >
@@ -40,11 +34,11 @@ const TestCard: React.FC<TestCardProps> = ({
           sizes="100%, 100%"
         />
       </div>
-      <div className="w-[70%] ml-auto h-full flex flex-col items-center text-center justify-between gap-14 max-lg:w-full max-lg:m-[60px_auto_0_auto]">
+      <div className="w-[70%] ml-auto h-full flex flex-col items-center text-center justify-between gap-14 max-[1200px]:w-full max-[1200px]:m-[60px_auto_0_auto]">
         <h2 className="text-primary text-lg font-bold ">
           Select the most logical answer:
         </h2>
-        <div className="grid grid-cols-2 gap-6 w-full h-full max-lg:min-h-96 max-sm:grid-cols-2 max-[500px]:grid-cols-1 max-[500px]:min-h-[900px]">
+        <div className="grid grid-cols-2 gap-6 w-full h-full max-[1200px]:min-h-96 max-sm:grid-cols-2 max-[500px]:grid-cols-1 max-[500px]:min-h-[900px]">
           {questions[currentQuestion].variantsImg.map((option, index) => (
             <div
               key={index}

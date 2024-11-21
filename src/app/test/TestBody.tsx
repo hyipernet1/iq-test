@@ -4,7 +4,7 @@ import clsx from "clsx";
 import { useTest } from "./Test";
 import Button from "@/components/ui/button";
 import { useState } from "react";
-import TestCard from "./TestCard";
+import TestQuestions from "./TestQuestions";
 
 interface TestBodyProps {
   className?: string;
@@ -12,14 +12,9 @@ interface TestBodyProps {
 
 const TestBody: React.FC<TestBodyProps> = ({ className }) => {
   const [isCompleted, setIsCompleted] = useState(false);
-  const {
-    questions,
-    currentQuestion,
-    setCurrentQuestion,
-    score,
-    setScore,
-    questionsQuantity,
-  } = useTest();
+
+  const { currentQuestion, setCurrentQuestion, score, questionsQuantity } =
+    useTest();
 
   return (
     <div className={clsx("py-10", className)}>
@@ -43,19 +38,7 @@ const TestBody: React.FC<TestBodyProps> = ({ className }) => {
             </Button>
           </div>
         ) : (
-          <div>
-            <h2 className="font-bold text-3xl text-center mb-4 bg-white">
-              Question {currentQuestion + 1} / {questionsQuantity}
-            </h2>
-            <TestCard
-              currentQuestion={currentQuestion}
-              questions={questions}
-              questionsQuantity={questionsQuantity}
-              setCurrentQuestion={setCurrentQuestion}
-              setIsCompleted={setIsCompleted}
-              setScore={setScore}
-            />
-          </div>
+          <TestQuestions setIsCompleted={setIsCompleted} />
         )
       ) : (
         <div className="text-center flex flex-col items-center gap-5">
@@ -65,9 +48,7 @@ const TestBody: React.FC<TestBodyProps> = ({ className }) => {
           <h3 className="text-center mt-20 text-3xl inline-flex items-center gap-3">
             Your IQ:{" "}
             <span className="text-6xl text-primary font-black">
-              {85 + (score / questionsQuantity) * 30 > 130
-                ? 130
-                : 85 + (score / questionsQuantity) * 30}
+              {85 + (score / questionsQuantity) * 30}
             </span>
           </h3>
           <h3 className="text-center mt-8 text-2xl">
