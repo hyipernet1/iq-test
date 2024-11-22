@@ -1,11 +1,11 @@
 import { prisma } from "@/prisma-client";
 import bcrypt from "bcrypt";
 import { tokenService } from "../tokens";
-import { UserDto } from "../../dtos/userDto";
+import { UserDto } from "../../../dtos/userDto";
 import { NextResponse } from "next/server";
 import { TOKEN } from "@/types/enums";
-import { handleApiError } from "../../exceptions/handleApiError";
-import { ApiError } from "../../exceptions/apiError";
+import { handleApiError } from "../../../exceptions/handleApiError";
+import { ApiError } from "../../../exceptions/apiError";
 
 export const POST = async (req: Request) => {
   try {

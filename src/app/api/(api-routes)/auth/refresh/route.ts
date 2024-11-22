@@ -1,9 +1,10 @@
 import { TOKEN } from "@/types/enums";
 import { NextRequest, NextResponse } from "next/server";
 import { tokenService } from "../tokens";
-import { UserDto } from "../../dtos/userDto";
+import { UserDto } from "../../../dtos/userDto";
 import { prisma } from "@/prisma-client";
-import { ApiError } from "../../exceptions/apiError";
+import { ApiError } from "../../../exceptions/apiError";
+import { handleApiError } from "@/app/api/exceptions/handleApiError";
 
 export const POST = async (req: NextRequest) => {
   try {
@@ -26,8 +27,8 @@ export const POST = async (req: NextRequest) => {
     });
 
     return res;
-  } catch (e: any) {
-    return NextResponse.json({ error: e.message, ok: false }, { status: 400 });
+  } catch (e) {
+    return handleApiError(e)
   }
 };
 
