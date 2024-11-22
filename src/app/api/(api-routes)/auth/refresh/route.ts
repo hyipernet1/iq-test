@@ -28,7 +28,7 @@ export const POST = async (req: NextRequest) => {
 
     return res;
   } catch (e) {
-    return handleApiError(e)
+    return handleApiError(e);
   }
 };
 
@@ -36,9 +36,8 @@ const refresh = async (token: string) => {
   const userData = tokenService.validateRefreshToken(token) as any;
 
   const tokenFromDb = await tokenService.findToken(token);
-  if (!userData || !tokenFromDb) throw new ApiError("You are not logged in", 401);
-
-  const user = await prisma.user.findUnique({ where: { id: userData.id } });
+  if (!userData || !tokenFromDb)
+    throw new ApiError("You are not logged in", 401);
 
   const userDto = new UserDto(userData as any);
   const tokens = tokenService.generateToken({ ...userDto });
