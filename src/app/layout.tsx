@@ -14,8 +14,8 @@ const poppins = Poppins({
 });
 
 export const metadata: Metadata = {
-  title: "IQ Test",
-  description: "IQ Test",
+  title: "IQ Logic",
+  description: "IQ Logic",
 };
 
 export default async function RootLayout({

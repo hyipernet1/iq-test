@@ -13,8 +13,8 @@ interface FooterProps {
 const Footer: React.FC<FooterProps> = ({ className }) => {
   return (
     <footer className={clsx("py-10 bg-background text-foreground", className)}>
-      <Container className="flex items-start justify-between gap-4">
-        <div className="flex flex-col items-cebe justify-start text-left gap-6">
+      <Container className="flex items-start justify-between gap-4 max-md:grid max-md:grid-cols-2 max-md:place-items-center max-md:[&>div]:text-center max-md:[&>div]:items-center max-md:[&>div>ul]:items-center max-[450px]:grid-cols-1 max-[450px]:gap-12">
+        <div className="flex flex-col items-center justify-start text-left gap-6">
           <h3 className="text-lg uppercase font-bold tracking-widest">
             Our services
           </h3>

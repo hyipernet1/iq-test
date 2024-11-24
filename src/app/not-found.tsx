@@ -2,7 +2,7 @@ import { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "IQ Test - Not Found",
+  title: "IQ Logic - Not Found",
 };
 
 const NotFound: React.FC = () => {
