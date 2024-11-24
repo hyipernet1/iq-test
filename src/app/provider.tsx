@@ -12,7 +12,14 @@ import {
 import { authService } from "@/services/auth/auth.service";
 import { useAuthStore } from "@/hooks/useAuthStore";
 
-const Provider: React.FC<PropsWithChildren> = ({ children }) => {
+interface Props {
+  refreshToken: string | undefined;
+}
+
+const Provider: React.FC<PropsWithChildren<Props>> = ({
+  children,
+  refreshToken,
+}) => {
   useEffect(() => {
     AOS.init({
       offset: 200,
@@ -20,7 +27,7 @@ const Provider: React.FC<PropsWithChildren> = ({ children }) => {
 
     const checkAuth = async () => {
       const accessToken = getAccessToken();
-      if (accessToken) {
+      if (refreshToken || accessToken) {
         try {
           const data = (await authService.refresh()).data;
           if (data) {

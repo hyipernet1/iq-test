@@ -3,12 +3,14 @@ export class UserDto {
   id: number;
   firstName: string;
   lastName: string;
+  customerId: string | null;
   tier: string;
 
   constructor(model: {
     email: string;
     id: number;
     firstName: string;
+    customerId: string | null;
     lastName: string;
     tier: string;
   }) {
@@ -17,5 +19,6 @@ export class UserDto {
     this.firstName = model.firstName;
     this.lastName = model.lastName;
     this.tier = model.tier;
+    this.customerId = model.customerId;
   }
 }

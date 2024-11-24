@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 import Button from "@/components/ui/button";
 import Input from "@/components/ui/input";
@@ -7,34 +7,25 @@ import clsx from "clsx";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-import toast from "react-hot-toast";
+import toast, { LoaderIcon } from "react-hot-toast";
 
 interface LoginProps {
   className?: string;
 }
 
 const Login: React.FC<LoginProps> = ({ className }) => {
-  const [loadingToastId, setLoadingToastId] = useState("");
   const { register, handleSubmit } = useForm<{
     email: string;
     password: string;
   }>();
 
-  const { mutateAsync: login, isPending, isSuccess, isError } = useLogin();
+  const { mutateAsync: login, isSuccess, isPending } = useLogin();
 
   useEffect(() => {
-    if (isPending) {
-      const loadingToastId = toast.loading("Logging in...");
-      setLoadingToastId(loadingToastId);
-    }
     if (isSuccess) {
-      loadingToastId && loadingToastId && toast.dismiss(loadingToastId);
       toast.success("Login successful!");
     }
-    if (isError) {
-      loadingToastId && loadingToastId && toast.dismiss(loadingToastId);
-    }
-  }, [isPending, isSuccess, isError]);
+  }, [isSuccess]);
 
   return (
     <div className={clsx(className)} data-aos="fade-right">
@@ -66,8 +57,11 @@ const Login: React.FC<LoginProps> = ({ className }) => {
               Register
             </Link>
           </p>
-          <Button type="submit" className="w-full mt-2">
-            Log In
+          <Button type="submit" className="w-full mt-2 flex items-center gap-5 text-center justify-center" disabled={isPending}>
+            Log In{" "}
+            <LoaderIcon
+              className={clsx("animate-spin", !isPending && "hidden")}
+            />
           </Button>
         </div>
       </form>

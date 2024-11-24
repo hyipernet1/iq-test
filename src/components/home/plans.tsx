@@ -13,8 +13,10 @@ interface PlansProps {
 
 const Plans: React.FC<PlansProps> = ({ className }) => {
   const { user } = useAuthStore();
+  console.log(user);
   return (
     <section
+      id="pricing"
       className={clsx(
         "py-20 bg-gradient-to-tl from-[#d7d7d7] to-background border-t-[rgba(0,0,0,0.2)] border-[1px]",
         className
@@ -40,7 +42,7 @@ const Plans: React.FC<PlansProps> = ({ className }) => {
               /month
             </p>
             <p className="text-neutral-400 mt-2 max-[430px]:text-sm">
-              7-day trial available for $0.50
+              2-days trial available for $0.50
             </p>
           </div>
           <ul className="[&>li]:flex [&>li]:items-center [&>li]:gap-2 flex flex-col items-start gap-3 text-lg max-[430px]:text-base">
@@ -59,7 +61,9 @@ const Plans: React.FC<PlansProps> = ({ className }) => {
               target={user ? "_blank" : "_self"}
               href={
                 user
-                  ? (`${process.env.NEXT_PUBLIC_STRIPE_MONTHLY_PLAN_LINK}?prefilled_email=${user.email}` as string)
+                  ? !user.customerId
+                    ? (`${process.env.NEXT_PUBLIC_STRIPE_TRIAL_LINK}?prefilled_email=${user.email}` as string)
+                    : (`${process.env.NEXT_PUBLIC_STRIPE_MONTHLY_PLAN_LINK}?prefilled_email=${user.email}` as string)
                   : "/login"
               }
             >

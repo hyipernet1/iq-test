@@ -8,16 +8,16 @@ datasource db {
 }
 
 model User {
-  id           Int           @id @default(autoincrement())
-  firstName    String
-  lastName     String
-  email        String        @unique
-  password     String
-  tier         Tier          @default(BASIC)
-  createdAt    DateTime      @default(now())
-  updatedAt    DateTime      @updatedAt
-  customerId   String?       @unique
-  refreshToken RefreshToken?
+  id             Int           @id @default(autoincrement())
+  firstName      String
+  lastName       String
+  email          String        @unique
+  password       String
+  customerId     String?       @unique
+  tier           Tier          @default(BASIC)
+  createdAt      DateTime      @default(now())
+  updatedAt      DateTime      @updatedAt
+  refreshToken   RefreshToken?
 }
 
 model RefreshToken {

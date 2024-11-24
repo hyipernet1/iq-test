@@ -41,7 +41,9 @@ const login = async ({
   password: string;
 }) => {
   // check if user exists
-  const user = await prisma.user.findUnique({ where: { email } });
+  const user = await prisma.user.findUnique({
+    where: { email },
+  });
   if (!user) throw new ApiError("User not found", 400);
 
   // check if password is correct

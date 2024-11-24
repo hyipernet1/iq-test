@@ -11,7 +11,6 @@ export function useLogin() {
       const res = await authService.login(data);
       if (!res?.data) return Promise.reject();
       useAuthStore.setState({ user: res.data.user });
-      console.log(res.data)
       setAccessToken(res.data.accessToken);
     },
   });

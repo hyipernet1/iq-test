@@ -5,6 +5,14 @@ import { useTest } from "./Test";
 import Button from "@/components/ui/button";
 import { useState } from "react";
 import TestQuestions from "./TestQuestions";
+import { useAuthStore } from "@/hooks/useAuthStore";
+import { TIER } from "@/types/enums";
+import Plans from "@/components/home/plans";
+import Login from "../login/Login";
+import Link from "next/link";
+import Image from "next/image";
+import { MoveRightIcon } from "lucide-react";
+import { useRefresh } from "@/hooks/useAuth";
 
 interface TestBodyProps {
   className?: string;
@@ -12,6 +20,8 @@ interface TestBodyProps {
 
 const TestBody: React.FC<TestBodyProps> = ({ className }) => {
   const [isCompleted, setIsCompleted] = useState(false);
+  const { user } = useAuthStore();
+  const {mutateAsync: refresh} = useRefresh()
 
   const { currentQuestion, setCurrentQuestion, score, questionsQuantity } =
     useTest();
@@ -45,15 +55,76 @@ const TestBody: React.FC<TestBodyProps> = ({ className }) => {
           <h2 className="text-primary font-bold text-5xl max-[450px]:text-4xl">
             Test Completed
           </h2>
-          <h3 className="text-center mt-20 text-3xl inline-flex items-center gap-3">
-            Your IQ:{" "}
-            <span className="text-6xl text-primary font-black">
-              {85 + (score / questionsQuantity) * 30}
-            </span>
-          </h3>
-          <h3 className="text-center mt-8 text-2xl">
-            Correct answers: {score >= 20 ? 20 : score} / {questionsQuantity}
-          </h3>
+          {!user ? (
+            <>
+              <h3 className="text-center mt-20 text-3xl inline-flex items-center gap-3">
+                Login to see your results
+              </h3>
+              <Login />
+            </>
+          ) : user?.tier === TIER.BASIC ? (
+            <>
+              <h3 className="text-center mt-20 text-3xl inline-flex items-center gap-3">
+                One more detail
+              </h3>
+              <div className="flex flex-col items-start p-5 w-1/2 bg-white border-[1px] border-[rgba(0,0,0,.3)] rounded-xl max-lg:w-[80%] max-[500px]:w-[95%]">
+                <div className="flex items-center justify-between w-full">
+                  <p className="text-2xl">Total Due:</p>
+                  <h4 className="text-primary font-bold text-3xl">$0.50</h4>
+                </div>
+                <div className="flex items-center justify-center gap-4 w-full">
+                  <Image src="/visa.svg" alt="Visa" width={60} height={30} />
+                  <Image
+                    src="/mastercard.svg"
+                    alt="Mastercard"
+                    width={60}
+                    height={30}
+                  />
+                </div>
+                <Button className="w-2/3 py-4 text-lg mx-auto mt-6">
+                  <Link
+                    target={user ? "_blank" : "_self"}
+                    href={
+                      user
+                        ? !user.customerId
+                          ? (`${process.env.NEXT_PUBLIC_STRIPE_TRIAL_LINK}?prefilled_email=${user.email}` as string)
+                          : (`${process.env.NEXT_PUBLIC_STRIPE_MONTHLY_PLAN_LINK}?prefilled_email=${user.email}` as string)
+                        : "/login"
+                    }
+                  >
+                    Pay
+                  </Link>
+                </Button>
+                <p className="text-neutral-500 text-center mt-3 text-xs w-full">
+                  You can cancel at any time
+                  <br />
+                  Trial 2-days period, then $29/month
+                </p>
+
+                <div className="w-full flex mt-12 items-center mx-auto text-center justify-center gap-4">
+                  <Button onClick={async () => refresh()}>Refresh</Button>
+                  <p className="text-left">
+                    Click here after payment, your test results will be
+                    available
+                  </p>
+                </div>
+              </div>
+            </>
+          ) : (
+            <>
+              <h3 className="text-center mt-20 text-3xl inline-flex items-center gap-3">
+                Your IQ:{" "}
+                <span className="text-6xl text-primary font-black">
+                  {85 + (score / questionsQuantity) * 30}
+                </span>
+              </h3>
+              <h3 className="text-center mt-8 text-2xl">
+                Correct answers: {score >= 20 ? 20 : score} /{" "}
+                {questionsQuantity}
+              </h3>
+              <Button onClick={async () => window.location.reload()} className="mt-5">Try Again</Button>
+            </>
+          )}
         </div>
       )}
     </div>

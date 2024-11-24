@@ -39,7 +39,9 @@ const refresh = async (token: string) => {
   if (!userData || !tokenFromDb)
     throw new ApiError("You are not logged in", 401);
 
-  const userDto = new UserDto(userData as any);
+  const user = await prisma.user.findUnique({ where: { id: userData.id } });
+
+  const userDto = new UserDto(user as any);
   const tokens = tokenService.generateToken({ ...userDto });
 
   await tokenService.saveToken(userDto.id, tokens.refreshToken);
