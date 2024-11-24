@@ -19,8 +19,6 @@ const SignUp: React.FC<SignUpProps> = ({ className }) => {
   const { mutateAsync: signup, isPending, isSuccess, isError } = useRegister();
 
   const { register, handleSubmit } = useForm<{
-    firstName: string;
-    lastName: string;
     email: string;
     password: string;
     passwordConfirmation: string;
@@ -53,23 +51,6 @@ const SignUp: React.FC<SignUpProps> = ({ className }) => {
         })}
       >
         <h2 className="font-bold text-4xl text-center mb-8">Sign up</h2>
-        <div className="grid grid-cols-2 w-full gap-5 max-[500px]:grid-cols-1">
-          <Input
-            type="text"
-            className="w-full"
-            placeholder="First Name"
-            required
-            {...register("firstName", { required: true })}
-          />
-          <Input
-            type="text"
-            id="lastName"
-            placeholder="Last Name"
-            className="w-full"
-            required
-            {...register("lastName", { required: true })}
-          />
-        </div>
         <Input
           type="email"
           id="email"

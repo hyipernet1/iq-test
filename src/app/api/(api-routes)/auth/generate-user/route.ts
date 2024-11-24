@@ -6,15 +6,16 @@ import { NextResponse } from "next/server";
 import { TOKEN } from "@/types/enums";
 import { handleApiError } from "../../../exceptions/handleApiError";
 import { ApiError } from "../../../exceptions/apiError";
+import { Resend } from "resend";
 
 export const POST = async (req: Request) => {
   try {
     // get body
     const body = await req.json();
-    const { email, password } = body;
+    const { email } = body;
 
     // register
-    const userData = await register({ email, password });
+    const userData = await generateUser({ email });
 
     // response
     const res = NextResponse.json(userData, { status: 201 });
@@ -33,23 +34,37 @@ export const POST = async (req: Request) => {
   }
 };
 
-const register = async ({
-  email,
-  password,
-}: {
-  email: string;
-  password: string;
-}) => {
+function generatePassword() {
+  var length = 8,
+    charset = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789",
+    retVal = "";
+  for (var i = 0, n = charset.length; i < length; ++i) {
+    retVal += charset.charAt(Math.floor(Math.random() * n));
+  }
+  return retVal;
+}
+
+const generateUser = async ({ email }: { email: string }) => {
   // check if user already exists
   const candidate = await prisma.user.findUnique({ where: { email } });
   if (candidate) throw new ApiError("User already exists", 400);
 
   // hash password
+  const password = generatePassword();
   const hashPassword = await bcrypt.hash(password, 3);
 
   // create user
   const user = await prisma.user.create({
     data: { email, password: hashPassword },
+  });
+
+  const resend = new Resend(process.env.RESEND_API_KEY);
+
+  await resend.emails.send({
+    from: "Acme <onboarding@resend.dev>",
+    to: [email],
+    subject: "Creating Account in IQ Logic",
+    html: `<p>You are creating account. <br /><br /> Your Email: ${email} <br/> Your Password: ${password} <br /><br /> Please, save it. We can not recover it!</p>`,
   });
 
   // create tokens

@@ -17,7 +17,7 @@ const TestQuestions: React.FC<TestQuestionsProps> = ({
   className,
   setIsCompleted,
 }) => {
-  const [timeLeft, setTimeLeft] = useState(600);
+  const [timeLeft, setTimeLeft] = useState(1200);
 
   useEffect(() => {
     const interval = setInterval(() => {

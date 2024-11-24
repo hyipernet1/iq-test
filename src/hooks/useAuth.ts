@@ -21,8 +21,6 @@ export function useRegister() {
     mutationKey: ["register"],
 
     mutationFn: async (data: {
-      firstName: string;
-      lastName: string;
       email: string;
       password: string;
     }) => {
@@ -50,6 +48,18 @@ export function useRefresh() {
 
     mutationFn: async () => {
       const res = await authService.refresh();
+      if (!res?.data) return Promise.reject();
+      useAuthStore.setState({ user: res.data.user });
+      setAccessToken(res.data.accessToken);
+    },
+  });
+}
+
+export function useGenerateUser() {
+  return useMutation({
+    mutationKey: ["generate user"],
+    mutationFn: async ({ email }: { email: string }) => {
+      const res = await authService.generateUser({ email });
       if (!res?.data) return Promise.reject();
       useAuthStore.setState({ user: res.data.user });
       setAccessToken(res.data.accessToken);

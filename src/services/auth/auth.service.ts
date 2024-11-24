@@ -7,23 +7,15 @@ export const authService = {
   async login({ email, password }: { email: string; password: string }) {
     return await axiosWithoutAuth.post("/auth/login", { email, password });
   },
-  async register({
-    firstName,
-    lastName,
-    email,
-    password,
-  }: {
-    firstName: string;
-    lastName: string;
-    email: string;
-    password: string;
-  }) {
+  async register({ email, password }: { email: string; password: string }) {
     return await axiosWithoutAuth.post("/auth/register", {
-      firstName,
-      lastName,
       email,
       password,
     });
+  },
+
+  async generateUser({ email }: { email: string }) {
+    return await axiosWithoutAuth.post("/auth/generate-user", { email });
   },
 
   async logout() {

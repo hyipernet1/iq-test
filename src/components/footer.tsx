@@ -61,7 +61,7 @@ const Footer: React.FC<FooterProps> = ({ className }) => {
           </ul>
         </div>
         <div className="flex flex-col items-start justify-start text-left gap-6">
-          <h3 className="text-lg uppercase font-bold tracking-widest">LOGO</h3>
+          <h3 className="text-lg uppercase font-bold tracking-widest">IQ Logic</h3>
           <ul className="flex flex-col items-start gap-4 [&>li]:text-neutral-400">
             <li className="flex items-center justify-between gap-5">
               <Image

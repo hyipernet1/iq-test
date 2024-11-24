@@ -7,12 +7,14 @@ import { useState } from "react";
 import TestQuestions from "./TestQuestions";
 import { useAuthStore } from "@/hooks/useAuthStore";
 import { TIER } from "@/types/enums";
-import Plans from "@/components/home/plans";
-import Login from "../login/Login";
 import Link from "next/link";
 import Image from "next/image";
-import { MoveRightIcon } from "lucide-react";
-import { useRefresh } from "@/hooks/useAuth";
+import { useGenerateUser, useRefresh } from "@/hooks/useAuth";
+import Input from "@/components/ui/input";
+import { useForm } from "react-hook-form";
+import { useGetUsers } from "@/hooks/useUsers";
+import toast from "react-hot-toast";
+import Login from "../login/Login";
 
 interface TestBodyProps {
   className?: string;
@@ -20,8 +22,23 @@ interface TestBodyProps {
 
 const TestBody: React.FC<TestBodyProps> = ({ className }) => {
   const [isCompleted, setIsCompleted] = useState(false);
+  const [loginFormVisible, setLoginFormVisible] = useState(false);
   const { user } = useAuthStore();
-  const {mutateAsync: refresh} = useRefresh()
+  const { data: users } = useGetUsers();
+  const { mutateAsync: refresh } = useRefresh();
+  const { mutateAsync: generateUser } = useGenerateUser();
+  const { register, handleSubmit } = useForm<{ email: string }>();
+
+  const checkUser = (data: { email: string }) => {
+    if (!user) {
+      const userData = users?.find((user) => user.email === data.email);
+      console.log(userData);
+      if (userData) {
+        setLoginFormVisible(true);
+        toast.error("User with this email already exists. Please Log in.");
+      } else generateUser({ email: data.email });
+    }
+  };
 
   const { currentQuestion, setCurrentQuestion, score, questionsQuantity } =
     useTest();
@@ -57,10 +74,28 @@ const TestBody: React.FC<TestBodyProps> = ({ className }) => {
           </h2>
           {!user ? (
             <>
-              <h3 className="text-center mt-20 text-3xl inline-flex items-center gap-3">
-                Login to see your results
-              </h3>
-              <Login />
+              {loginFormVisible ? (
+                <Login />
+              ) : (
+                <>
+                  <h3 className="text-center mt-10 text-3xl inline-flex items-center gap-3">
+                    Enter your email
+                  </h3>
+                  <form
+                    className="flex flex-col items-center gap-5 mt-5 min-w-[400px] max-[420px]:min-w-[300px]"
+                    onSubmit={handleSubmit(checkUser)}
+                  >
+                    <Input
+                      required
+                      {...register("email", { required: true })}
+                      type="email"
+                      placeholder="123@gmail.com"
+                      className="w-full"
+                    />
+                    <Button type="submit">Get Results</Button>
+                  </form>
+                </>
+              )}
             </>
           ) : user?.tier === TIER.BASIC ? (
             <>
@@ -122,7 +157,12 @@ const TestBody: React.FC<TestBodyProps> = ({ className }) => {
                 Correct answers: {score >= 20 ? 20 : score} /{" "}
                 {questionsQuantity}
               </h3>
-              <Button onClick={async () => window.location.reload()} className="mt-5">Try Again</Button>
+              <Button
+                onClick={async () => window.location.reload()}
+                className="mt-5"
+              >
+                Try Again
+              </Button>
             </>
           )}
         </div>
