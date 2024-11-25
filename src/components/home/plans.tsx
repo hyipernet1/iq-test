@@ -58,7 +58,6 @@ const Plans: React.FC<PlansProps> = ({ className }) => {
           </ul>
           <Button className="w-2/3 py-4 text-lg">
             <Link
-              target={user ? "_blank" : "_self"}
               href={
                 user
                   ? !user.customerId

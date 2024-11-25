@@ -11,9 +11,10 @@ import toast, { LoaderIcon } from "react-hot-toast";
 
 interface LoginProps {
   className?: string;
+  callback?: () => void;
 }
 
-const Login: React.FC<LoginProps> = ({ className }) => {
+const Login: React.FC<LoginProps> = ({ className, callback }) => {
   const { register, handleSubmit } = useForm<{
     email: string;
     password: string;
@@ -24,6 +25,7 @@ const Login: React.FC<LoginProps> = ({ className }) => {
   useEffect(() => {
     if (isSuccess) {
       toast.success("Login successful!");
+      callback?.()
     }
   }, [isSuccess]);
 

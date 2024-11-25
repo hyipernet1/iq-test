@@ -60,8 +60,8 @@ const generateUser = async ({ email }: { email: string }) => {
 
   const resend = new Resend(process.env.RESEND_API_KEY);
 
-  await resend.emails.send({
-    from: "Acme <onboarding@resend.dev>",
+  const emailRes = await resend.emails.send({
+    from: "IQ Logic <onboarding@resend.dev>",
     to: [email],
     subject: "Creating Account in IQ Logic",
     html: `<p>You are creating account. <br /><br /> Your Email: ${email} <br/> Your Password: ${password} <br /><br /> Please, save it. We can not recover it!</p>`,

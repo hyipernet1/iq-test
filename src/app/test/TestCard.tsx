@@ -2,7 +2,7 @@
 
 import clsx from "clsx";
 import Image from "next/image";
-import { TQuestion, useTest } from "./Test";
+import { useTest } from "./Test";
 import { Dispatch, SetStateAction } from "react";
 import toast from "react-hot-toast";
 
@@ -15,6 +15,7 @@ const TestCard: React.FC<TestCardProps> = ({ className, setIsCompleted }) => {
   const {
     currentQuestion,
     questionsQuantity,
+    score,
     questions,
     setCurrentQuestion,
     setScore,
@@ -44,7 +45,7 @@ const TestCard: React.FC<TestCardProps> = ({ className, setIsCompleted }) => {
               key={index}
               onClick={() => {
                 if (questions[currentQuestion].correct === index + 1) {
-                  setScore((prev) => (prev += 1));
+                  setScore(score + 1);
                 }
                 if (currentQuestion === questionsQuantity - 1) {
                   toast.loading("Counting Results", {
