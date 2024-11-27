@@ -87,6 +87,7 @@ const TestCompleted: React.FC = ({}) => {
             </div>
             <Button className="w-2/3 py-4 text-lg mx-auto mt-6">
               <Link
+                className="w-full h-full"
                 href={
                   user
                     ? !user.customerId
