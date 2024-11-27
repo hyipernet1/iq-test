@@ -56,9 +56,9 @@ const Plans: React.FC<PlansProps> = ({ className }) => {
               <CheckIcon size={30} /> 24/7 Support
             </li>
           </ul>
-          <Button className="w-2/3 py-4 text-lg">
+          <Button className="w-2/3 text-lg">
             <Link
-              className="w-full h-full"
+              className="w-full h-full py-4"
               href={
                 user
                   ? !user.customerId
