@@ -85,9 +85,9 @@ const TestCompleted: React.FC = ({}) => {
                 height={30}
               />
             </div>
-            <Button className="w-2/3 text-lg mx-auto mt-6">
+            <Button className="w-2/3 !p-0 text-lg mx-auto mt-6">
               <Link
-                className="w-full h-full py-4"
+                className="w-full h-full py-4 px-6 block"
                 href={
                   user
                     ? !user.customerId

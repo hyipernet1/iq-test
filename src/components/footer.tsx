@@ -73,8 +73,8 @@ const Footer: React.FC<FooterProps> = ({ className }) => {
               <Image src="/visa.svg" alt="visa" width={60} height={30} />
             </li>
             <li>
-              <Button>
-                <Link href="/test">Start the test</Link>
+              <Button className="!p-0">
+                <Link className="px-4 py-2 block" href="/test">Start the test</Link>
               </Button>
             </li>
           </ul>

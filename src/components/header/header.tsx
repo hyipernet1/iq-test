@@ -20,8 +20,8 @@ const HeaderButtons = ({ className }: { className?: string }) => {
       )}
     >
       <HeaderLinks />
-      <Button>
-        <Link href="/test">START THE TEST</Link>
+      <Button className="!p-0">
+        <Link className="px-4 py-2 block" href="/test">START THE TEST</Link>
       </Button>
     </div>
   );

@@ -29,8 +29,8 @@ const Hero: React.FC<HeroProps> = ({ className }) => {
             Unlock tailored insights, embrace challenges, and take the first
             step toward understanding your mind’s true capabilities.
           </p>
-          <Button className="w-2/3 max-sm:py-2 max-sm:px-12 max-sm:text-lg max-sm:w-min max-sm:text-nowrap max-md:mx-auto justify-center flex px-12 py-4 group text-2xl border-2 hover:border-primary hover:bg-transparent hover:text-foreground">
-            <Link href="/test" className="flex items-center gap-4">
+          <Button className="w-2/3 !p-0 max-sm:text-lg max-sm:w-min max-sm:text-nowrap max-md:mx-auto justify-center flex group text-2xl border-2 hover:border-primary hover:bg-transparent hover:text-foreground">
+            <Link href="/test" className="flex items-center gap-4 max-sm:py-2 max-sm:px-12 px-12 py-4 w-full h-full justify-center">
               Test Your IQ
               <ArrowRightIcon
                 className="group-hover:translate-x-full duration-300 transition-transform"
