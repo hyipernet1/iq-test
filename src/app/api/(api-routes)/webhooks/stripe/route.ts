@@ -47,6 +47,7 @@ export async function POST(req: Request) {
             mode: "payment",
             success_url: `${process.env.BASE_URL}/test/completed`,
             cancel_url: `${process.env.BASE_URL}/`,
+            customer_creation: "always"
           });
 
           console.log("Checkout session created:", checkoutSession.id);
