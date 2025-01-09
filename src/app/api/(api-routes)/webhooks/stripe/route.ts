@@ -1,16 +1,11 @@
 import { stripe } from "@/lib/stripe";
 import { prisma } from "@/prisma-client";
-import { createHash } from "crypto";
 import { NextResponse } from "next/server";
 import Stripe from "stripe";
 
 const WEBHOOK_SECRET = process.env.STRIPE_WEBHOOK_SECRET!;
 const MONTHLY_PRICE_ID = process.env.STRIPE_MONTHLY_PRICE_ID as string;
 const TRIAL_PRICE_ID = process.env.STRIPE_TRIAL_PRICE_ID as string; // Ціна для trial
-
-function generateCustomerId(email: string): string {
-  return createHash("sha256").update(email).digest("hex");
-}
 
 export async function POST(req: Request) {
   const body = await req.text();
@@ -27,8 +22,7 @@ export async function POST(req: Request) {
   if (event.type === "checkout.session.completed") {
     const session = event.data.object as Stripe.Checkout.Session;
     const customerDetails = session.customer_details;
-    const customerId =
-      customerDetails?.email && generateCustomerId(customerDetails.email);
+    const customerId = session.customer as string;
 
     if (customerDetails && customerDetails.email) {
       const user = await prisma.user.findUnique({
@@ -43,7 +37,7 @@ export async function POST(req: Request) {
       if (!user.customerId) {
         try {
           const checkoutSession = await stripe.checkout.sessions.create({
-            customer: customerId as string,
+            customer: session.customer as string,
             line_items: [
               {
                 price: TRIAL_PRICE_ID,
@@ -58,7 +52,7 @@ export async function POST(req: Request) {
           console.log("Checkout session created:", checkoutSession.id);
 
           const subscription = await stripe.subscriptions.create({
-            customer: customerId as string,
+            customer: session.customer as string,
             items: [{ price: MONTHLY_PRICE_ID }],
             trial_period_days: 2,
           });
@@ -69,7 +63,7 @@ export async function POST(req: Request) {
             where: { email: customerDetails.email },
             data: {
               tier: "MONTH",
-              customerId,
+              customerId: session.customer as string,
             },
           });
 
@@ -78,9 +72,7 @@ export async function POST(req: Request) {
           );
         } catch (error) {
           console.error("Error creating trial subscription:", error);
-          return new Response("Error creating trial subscription", {
-            status: 500,
-          });
+          return new Response("Error creating trial subscription", { status: 500 });
         }
       } else {
         try {
