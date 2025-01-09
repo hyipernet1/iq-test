@@ -1,8 +1,8 @@
 import { stripe } from "@/lib/stripe";
 import { prisma } from "@/prisma-client";
+import { createHash } from "crypto";
 import { NextResponse } from "next/server";
 import Stripe from "stripe";
-import { createHash } from "crypto";
 
 const WEBHOOK_SECRET = process.env.STRIPE_WEBHOOK_SECRET!;
 const MONTHLY_PRICE_ID = process.env.STRIPE_MONTHLY_PRICE_ID as string;
@@ -27,21 +27,23 @@ export async function POST(req: Request) {
   if (event.type === "checkout.session.completed") {
     const session = event.data.object as Stripe.Checkout.Session;
     const customerDetails = session.customer_details;
-    const email = customerDetails?.email;
+    const customerId =
+      customerDetails?.email && generateCustomerId(customerDetails.email);
 
-    if (email) {
+    if (customerDetails && customerDetails.email) {
       const user = await prisma.user.findUnique({
-        where: { email: email },
+        where: { email: customerDetails.email },
       });
 
       if (!user) {
         console.log("User not found");
+        return new Response("User not found", { status: 404 });
+      }
 
-        const customerId = generateCustomerId(email);
-
+      if (!user.customerId) {
         try {
           const checkoutSession = await stripe.checkout.sessions.create({
-            customer_email: email,
+            customer: customerId as string,
             line_items: [
               {
                 price: TRIAL_PRICE_ID,
@@ -56,7 +58,7 @@ export async function POST(req: Request) {
           console.log("Checkout session created:", checkoutSession.id);
 
           const subscription = await stripe.subscriptions.create({
-            customer: checkoutSession.customer as string,
+            customer: customerId as string,
             items: [{ price: MONTHLY_PRICE_ID }],
             trial_period_days: 2,
           });
@@ -64,15 +66,15 @@ export async function POST(req: Request) {
           console.log("Subscription created:", subscription.id);
 
           await prisma.user.update({
-            where: { email },
+            where: { email: customerDetails.email },
             data: {
               tier: "MONTH",
-              customerId: customerId,
+              customerId,
             },
           });
 
           console.log(
-            `User ${email} has started trial and subscribed to monthly plan.`
+            `User ${customerDetails.email} has started trial and subscribed to monthly plan.`
           );
         } catch (error) {
           console.error("Error creating trial subscription:", error);
@@ -81,29 +83,14 @@ export async function POST(req: Request) {
           });
         }
       } else {
-        if (!user.customerId) {
-          const customerId = generateCustomerId(email);
-          try {
-            await prisma.user.update({
-              where: { email: email },
-              data: { customerId: customerId }, 
-            });
-
-            console.log(`User ${email} already exists, customerId added.`);
-          } catch (error) {
-            console.error("Error adding customerId:", error);
-            return new Response("Error adding customerId", { status: 500 });
-          }
-        }
-
         try {
           await prisma.user.update({
-            where: { email: email },
-            data: { tier: "MONTH" },
+            where: { email: customerDetails.email },
+            data: { tier: "MONTH", customerId },
           });
 
           console.log(
-            `User ${email} already has customerId, tier updated to 'Month'.`
+            `User ${customerDetails.email} already has customerId, tier updated to 'Month'.`
           );
         } catch (error) {
           console.error("Error updating user tier:", error);
