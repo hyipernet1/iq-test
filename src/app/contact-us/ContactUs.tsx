@@ -5,8 +5,8 @@ import Input from "@/components/ui/input";
 import Textarea from "@/components/ui/textarea";
 import useSendEmail from "@/hooks/useSendEmail";
 import clsx from "clsx";
-import { useEffect, useRef, useState } from "react";
-import { FieldValues, useForm } from "react-hook-form";
+import { useEffect, useState } from "react";
+import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 
 interface ContactUsProps {
@@ -57,7 +57,7 @@ const ContactUs: React.FC<ContactUsProps> = ({ className }) => {
             className="w-full"
             placeholder="Full name"
             required
-            {...register("fullName", {required: true})}
+            {...register("fullName", { required: true })}
           />
           <Input
             type="email"
@@ -65,7 +65,7 @@ const ContactUs: React.FC<ContactUsProps> = ({ className }) => {
             placeholder="Email"
             className="w-full"
             required
-            {...register("email", {required: true})}
+            {...register("email", { required: true })}
           />
         </div>
         <Input
@@ -74,14 +74,14 @@ const ContactUs: React.FC<ContactUsProps> = ({ className }) => {
           placeholder="Subject"
           className="w-full mt-6"
           required
-          {...register("subject", {required: true})}
+          {...register("subject", { required: true })}
         />
         <Textarea
           id="message"
           placeholder="Your message"
           required
           className="w-full mt-6 max-h-[200px]"
-          {...register("message", {required: true})}
+          {...register("message", { required: true })}
         />
         <div className="mt-6">
           <Button type="submit" className="w-full mt-2">
