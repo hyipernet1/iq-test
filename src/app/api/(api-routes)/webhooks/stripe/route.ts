@@ -39,7 +39,7 @@ export async function POST(req: Request) {
 
       if (!user) {
         return new Response("User not found", { status: 404 });
-      }``
+      }
 
       if (!user.customerId) {
         try {
