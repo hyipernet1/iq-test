@@ -49,7 +49,7 @@ const TestBody: React.FC<TestBodyProps> = ({ className }) => {
 								<li className='flex items-start'>
 									<span className='text-primary font-bold mr-2'>•</span>
 									<span>
-										You'll have <strong>20 minutes</strong> to complete the
+										You'll have <strong>30 minutes</strong> to complete the
 										entire test. Try to answer all questions.
 									</span>
 								</li>
