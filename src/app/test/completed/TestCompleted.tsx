@@ -75,7 +75,7 @@ const TestCompleted: React.FC = ({}) => {
 					<div className='flex flex-col items-start p-5 w-1/2 bg-white border-[1px] border-[rgba(0,0,0,.3)] rounded-xl max-lg:w-[80%] max-[500px]:w-[95%]'>
 						<div className='flex items-center justify-between w-full'>
 							<p className='text-2xl'>Total Due:</p>
-							<h4 className='text-primary font-bold text-3xl'>$0.50</h4>
+							<h4 className='text-primary font-bold text-3xl'>$0.60</h4>
 						</div>
 						<div className='flex items-center justify-center gap-4 w-full'>
 							<Image src='/visa.svg' alt='Visa' width={60} height={30} />
@@ -103,7 +103,7 @@ const TestCompleted: React.FC = ({}) => {
 						<p className='text-neutral-500 text-center mt-3 text-xs w-full'>
 							You can cancel at any time
 							<br />
-							Trial 2-days period, then $29/month
+							Trial 2-days period
 						</p>
 
 						<div className='w-full flex mt-12 items-center mx-auto text-center justify-center gap-4'>

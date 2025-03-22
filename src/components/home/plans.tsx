@@ -42,7 +42,7 @@ const Plans: React.FC<PlansProps> = ({ className }) => {
               /month
             </p>
             <p className="text-neutral-400 mt-2 max-[430px]:text-sm">
-              2-days trial available for $0.50
+              2-days trial available for $0.60
             </p>
           </div>
           <ul className="[&>li]:flex [&>li]:items-center [&>li]:gap-2 flex flex-col items-start gap-3 text-lg max-[430px]:text-base">
