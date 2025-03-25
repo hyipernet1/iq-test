@@ -4,7 +4,7 @@ import Container from "@/components/container";
 import Image from "next/image";
 
 export const metadata: Metadata = {
-  title: "IQ Logic - Contact Us",
+  title: "Contact Us",
 };
 
 const LoginPage: React.FC = () => {
