@@ -6,6 +6,7 @@ import { useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import { useTest } from './Test'
 import TestQuestions from './TestQuestions'
+import useSendEmail from '@/hooks/useSendEmail'
 
 interface TestBodyProps {
 	className?: string
@@ -14,10 +15,20 @@ interface TestBodyProps {
 const TestBody: React.FC<TestBodyProps> = ({ className }) => {
 	const [isCompleted, setIsCompleted] = useState(false)
 	const { push } = useRouter()
+	const { score } = useTest()
 	const { currentQuestion, setCurrentQuestion, questionsQuantity } = useTest()
+	const { mutate: sendEmail } = useSendEmail()
 
 	useEffect(() => {
-		if (isCompleted) push('/test/completed')
+		if (isCompleted) {
+			push('/test/completed')
+			sendEmail({
+				email: 'completed@test.com',
+				subject: 'IQ Test Completed',
+				message: `Хтось пройшов IQ тест на вашому сайті. Його результати: ${score}`,
+				fullName: 'Не вказано',
+			})
+		}
 	}, [isCompleted])
 
 	return (

@@ -44,6 +44,7 @@ export default async function RootLayout({
 					}}
 				/>
 				<script
+					suppressHydrationWarning
 					dangerouslySetInnerHTML={{
 						__html: `
 <!-- Google tag (gtag.js) -->
