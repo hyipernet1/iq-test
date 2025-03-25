@@ -3,7 +3,7 @@ import { Metadata } from "next";
 import { termsOfSales } from "./termsOfSales.data";
 
 export const metadata: Metadata = {
-  title: "IQ Logic - Terms of Sales",
+  title: "Terms of Sales",
 };
 
 const TermsOfSales = () => {
