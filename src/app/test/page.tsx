@@ -2,7 +2,7 @@ import { Metadata } from "next";
 import Test from './Test'
 
 export const metadata: Metadata = {
-  title: 'IQ Logic - Test'
+  title: 'IQ Test'
 }
 
 export default function TestPage() {
