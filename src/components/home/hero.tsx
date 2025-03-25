@@ -19,12 +19,12 @@ const Hero: React.FC<HeroProps> = ({ className }) => {
     >
       <Container className="flex items-start justify-between gap-5 overflow-hidden">
         <div data-aos="fade-right" className="w-[60%] overflow-hidden max-lg:w-[80%] flex flex-col gap-7 max-md:w-full max-md:text-center">
-          <h2 className="text-6xl font-bold max-sm:text-4xl">
+          <h2 className="text-5xl uppercase font-extrabold max-sm:text-4xl">
             Your Intelligence,
             <br />
             Your Journey
           </h2>
-          <p className="uppercase font-medium text-gray-600 max-sm:text-sm">
+          <p className="text-lg text-gray-600 max-sm:text-sm">
             Explore your cognitive potential with our personalized IQ test.
             Unlock tailored insights, embrace challenges, and take the first
             step toward understanding your mind’s true capabilities.
@@ -51,16 +51,16 @@ const Hero: React.FC<HeroProps> = ({ className }) => {
       </Container>
       <Container className="mt-20 flex w-full items-center justify-around [&>div_span]:text-7xl [&>div_span]:font-bold [&>div]:text-lg max-lg:grid max-lg:grid-cols-2 max-lg:gap-10 max-lg:w-full max-lg:text-center max-sm:grid-cols-1 max-sm:gap-6 max-sm:[&>div_span]:text-4xl">
         <div data-aos="fade-down" data-aos-delay='200' data-aos-offset='10'>
-          <span>20</span> Questions
+          <span>30</span> Questions
         </div>
         <div data-aos="fade-down" data-aos-delay='300' data-aos-offset='10'>
-          <span>10</span> Minutes
+          <span>30</span> Minutes
         </div>
         <div data-aos="fade-down" data-aos-delay='400' data-aos-offset='10'>
           <span>100%</span> Accurate
         </div>
         <div data-aos="fade-down" data-aos-delay='500' data-aos-offset='10'>
-          <span>106</span> average IQ
+          <span>130</span> average IQ
         </div>
       </Container>
     </div>
