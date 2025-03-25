@@ -4,10 +4,10 @@ import Container from "@/components/container";
 import Image from "next/image";
 
 export const metadata: Metadata = {
-  title: "IQ Logic - Contact Us",
+  title: "Unsubscribe",
 };
 
-const LoginPage: React.FC = () => {
+const UnsubscribePage: React.FC = () => {
   return (
     <section className="py-10 min-h-[75vh] bg-gradient-to-tl from-[#d7d7d7] to-background">
       <Container>
@@ -17,4 +17,4 @@ const LoginPage: React.FC = () => {
   );
 };
 
-export default LoginPage;
+export default UnsubscribePage;
