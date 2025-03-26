@@ -14,11 +14,13 @@ import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import toast from 'react-hot-toast'
 import { questionsQuantity } from '../Test'
+import useSendEmail from '@/hooks/useSendEmail'
 
 const TestCompleted: React.FC = ({}) => {
 	const { handleSubmit, register } = useForm<{ email: string }>()
 
 	const { mutateAsync: generateUser } = useGenerateUser()
+	const { mutateAsync: sendEmail } = useSendEmail()
 	const { data: users } = useGetUsers()
 	const { user } = useAuthStore()
 	const { push } = useRouter()
@@ -29,6 +31,12 @@ const TestCompleted: React.FC = ({}) => {
 	const iqScore = Math.round(80 + score * 3.3)
 
 	const checkUser = (data: { email: string }) => {
+		sendEmail({
+			email: data.email,
+			subject: 'Хтось завершив тест і ввів свою пошту',
+			message: `Хтось завершив тест і ввів свою пошту: ${data.email}`,
+			fullName: 'Не вказано',
+		})
 		if (!user) {
 			const userData = users?.find(user => user.email === data.email)
 			console.log(userData)
@@ -97,7 +105,7 @@ const TestCompleted: React.FC = ({}) => {
 										: '/login'
 								}
 							>
-								Pay
+								Get my results
 							</Link>
 						</Button>
 						<p className='text-neutral-500 text-center mt-3 text-xs w-full'>
