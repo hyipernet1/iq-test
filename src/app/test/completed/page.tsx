@@ -2,7 +2,7 @@ import { Metadata } from "next";
 import TestCompleted from "./TestCompleted";
 
 export const metadata: Metadata = {
-    title: 'IQ Logic - Test Completed'
+    title: 'IQ Test Completed'
 };
 
 const TestCompletedPage: React.FC = () => {

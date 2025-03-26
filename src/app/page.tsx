@@ -4,7 +4,7 @@ import Plans from "@/components/home/plans";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: 'IQ Logic - Home'
+  title: 'My IQ Rank'
 }
 
 export default function Home() {

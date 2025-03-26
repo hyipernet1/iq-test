@@ -3,7 +3,7 @@ import { Metadata } from "next";
 import { privacyPolicy } from "./privacyPolicy.data";
 
 export const metadata: Metadata = {
-  title: "IQ Logic - Privacy Policy",
+  title: "Privacy Policy",
 };
 
 const PrivacyPolicy = () => {
