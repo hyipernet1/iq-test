@@ -59,7 +59,7 @@ const TestCard: React.FC<TestCardProps> = ({ className, setIsCompleted }) => {
 				<h2 className='text-primary text-lg font-bold '>
 					Select the most logical answer:
 				</h2>
-				<div className='grid grid-cols-3 gap-4 w-full h-full max-[1200px]:min-h-96 max-sm:grid-cols-2 max-[500px]:grid-cols-1 max-[500px]:min-h-[900px]'>
+				<div className='grid grid-cols-3 gap-4 w-full h-full max-[1200px]:min-h-min'>
 					{questions[currentQuestion].variantsImg.map((option, index) => (
 						<div
 							key={index}
@@ -81,7 +81,7 @@ const TestCard: React.FC<TestCardProps> = ({ className, setIsCompleted }) => {
 							)} flex flex-col items-center text-center gap-2 py-3 cursor-pointer rounded-lg bg-slate-200 border-b-2 border-primary`}
 						>
 							<p className='text-lg font-bold text-primary'>{index + 1}</p>
-							<div className='flex items-center h-24 w-24 justify-center cursor-pointer relative'>
+							<div className='flex items-center aspect-square w-[80%] justify-center cursor-pointer relative'>
 								<Image
 									src={option}
 									alt={`Option ${index + 1}`}
