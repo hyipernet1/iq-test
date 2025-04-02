@@ -78,7 +78,15 @@ const TestCompleted: React.FC = ({}) => {
 			) : user?.tier === TIER.BASIC ? (
 				<>
 					<h3 className='text-center mt-20 text-3xl inline-flex items-center gap-3'>
-						One more detail
+						 Your Result Includes:
+
+                                                     🎓 IQ Score Compared to Global Average
+
+                                                     📊 Cognitive Strengths (Logic, Memory, Attention)
+
+                                                     📄 Downloadable Certificate (PDF)
+
+                                                     💬 Optional Professional Feedback
 					</h3>
 					<div className='flex flex-col items-start p-5 w-1/2 bg-white border-[1px] border-[rgba(0,0,0,.3)] rounded-xl max-lg:w-[80%] max-[500px]:w-[95%]'>
 						<div className='flex items-center justify-between w-full'>
@@ -109,15 +117,7 @@ const TestCompleted: React.FC = ({}) => {
 							</Link>
 						</Button>
 						<p className='text-base-500 text-center mt-3 text-xs w-full'>
-							 Your Result Includes:
-
-                                                     🎓 IQ Score Compared to Global Average
-
-                                                     📊 Cognitive Strengths (Logic, Memory, Attention)
-
-                                                     📄 Downloadable Certificate (PDF)
-
-                                                     💬 Optional Professional Feedback
+							
 							<br />
 							
 						</p>
