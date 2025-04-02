@@ -86,7 +86,6 @@ const TestCompleted: React.FC = ({}) => {
 
                                                      📄 Downloadable Certificate (PDF)
 
-                                                     💬 Optional Professional Feedback
 					</h3>
 					<div className='flex flex-col items-start p-5 w-1/2 bg-white border-[1px] border-[rgba(0,0,0,.3)] rounded-xl max-lg:w-[80%] max-[500px]:w-[95%]'>
 						<div className='flex items-center justify-between w-full'>
