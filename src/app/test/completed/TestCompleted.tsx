@@ -109,7 +109,15 @@ const TestCompleted: React.FC = ({}) => {
 							</Link>
 						</Button>
 						<p className='text-neutral-500 text-center mt-3 text-xs w-full'>
-							
+							 Your Result Includes:
+
+                                                     🎓 IQ Score Compared to Global Average
+
+                                                     📊 Cognitive Strengths (Logic, Memory, Attention)
+
+                                                     📄 Downloadable Certificate (PDF)
+
+                                                     💬 Optional Professional Feedback
 							<br />
 							
 						</p>
