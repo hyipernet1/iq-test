@@ -109,9 +109,9 @@ const TestCompleted: React.FC = ({}) => {
 							</Link>
 						</Button>
 						<p className='text-neutral-500 text-center mt-3 text-xs w-full'>
-							You can cancel at any time
+							
 							<br />
-							Trial 2-days period
+							
 						</p>
 
 						<div className='w-full flex mt-12 items-center mx-auto text-center justify-center gap-4'>
