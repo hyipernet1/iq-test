@@ -12,7 +12,7 @@ export default function Home() {
   return (
     <section>
       <Hero />
-      <iPhonePromo />  {/* 👈 оце вставляємо */}
+      <iPhonePromo /> 
       <Faq />
       <Plans />
     </section>
