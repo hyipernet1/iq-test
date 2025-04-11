@@ -77,9 +77,23 @@ const TestCompleted: React.FC = ({}) => {
 				</>
 			) : user?.tier === TIER.BASIC ? (
 				<>
-					<h3 className='text-center mt-20 text-3xl inline-flex items-center gap-3'>
-						One more detail
-					</h3>
+					<div className="bg-yellow-50 border border-yellow-200 rounded-2xl p-6 text-center max-w-2xl mx-auto mt-20 shadow-md">
+  <h3 className="text-3xl font-semibold flex items-center justify-center gap-2 mb-4">
+    🎁 Subscription = A Chance to Win an iPhone 15!
+  </h3>
+  <p className="text-lg mb-2">
+    Subscribe today and you’ll be automatically entered into our iPhone 15 giveaway 📱
+  </p>
+  <ul className="text-left text-base list-disc list-inside mb-4 space-y-1">
+    <li>📆 Winner announced on May 1st</li>
+    <li>🎯 Only paid subscribers are eligible</li>
+    <li>💡 More subscriptions = more chances to win</li>
+  </ul>
+  <p className="text-lg font-medium">
+    👉 Click below to subscribe and secure your chance to win!
+  </p>
+</div>
+
 					<div className='flex flex-col items-start p-5 w-1/2 bg-white border-[1px] border-[rgba(0,0,0,.3)] rounded-xl max-lg:w-[80%] max-[500px]:w-[95%]'>
 						<div className='flex items-center justify-between w-full'>
 							<p className='text-2xl'>Total Due:</p>
@@ -108,10 +122,10 @@ const TestCompleted: React.FC = ({}) => {
 								Get my results
 							</Link>
 						</Button>
-						<p className='text-neutral-500 text-center mt-3 text-xs w-full'>
-							You can cancel at any time
+						<p className='text-base-500 text-center mt-3 text-xs w-full'>
+							
 							<br />
-							Trial 2-days period
+							
 						</p>
 
 						<div className='w-full flex mt-12 items-center mx-auto text-center justify-center gap-4'>
