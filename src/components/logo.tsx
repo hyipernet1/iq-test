@@ -14,7 +14,7 @@ const Logo: React.FC<LogoProps> = ({ className }) => {
 					<Image
 						src={'/logo.png'}
 						fill
-            sizes='100%, 100%'
+						sizes='100%, 100%'
 						alt={'Logo'}
 						className='object-cover'
 					/>
