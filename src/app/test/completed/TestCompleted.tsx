@@ -18,6 +18,7 @@ import { ReasonsSection } from './components/ReasonsSection'
 import { ResultSection } from './components/ResultSection'
 import { StatsSection } from './components/StatsSection'
 import { TestimonialsSection } from './components/TestimonialsSection'
+import { useContactUser } from '@/hooks/useContactUser'
 
 const testimonials = [
 	{
@@ -65,6 +66,7 @@ const TestCompleted: React.FC = ({}) => {
 
 	const { mutateAsync: generateUser } = useGenerateUser()
 	const { mutateAsync: sendEmail } = useSendEmail()
+	const { mutateAsync: contactUser } = useContactUser()
 	const { data: users } = useGetUsers()
 	const { user } = useAuthStore()
 	const { push } = useRouter()
