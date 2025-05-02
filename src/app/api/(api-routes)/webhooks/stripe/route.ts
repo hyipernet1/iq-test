@@ -5,7 +5,6 @@ import Stripe from "stripe";
 
 const WEBHOOK_SECRET = process.env.STRIPE_WEBHOOK_SECRET!;
 const MONTHLY_PRICE_ID = process.env.STRIPE_MONTHLY_PRICE_ID as string;
-const TRIAL_PRICE_ID = process.env.STRIPE_TRIAL_PRICE_ID as string;
 
 export async function POST(req: Request) {
   const body = await req.text();

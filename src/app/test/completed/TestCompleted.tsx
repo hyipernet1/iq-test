@@ -1,20 +1,64 @@
 'use client'
 
 import Login from '@/app/login/Login'
-import Button from '@/components/ui/button'
-import Input from '@/components/ui/input'
 import { useGenerateUser, useRefresh } from '@/hooks/useAuth'
 import { useAuthStore } from '@/hooks/useAuthStore'
+import useSendEmail from '@/hooks/useSendEmail'
 import { useGetUsers } from '@/hooks/useUsers'
 import { TIER } from '@/types/enums'
-import Image from 'next/image'
-import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import toast from 'react-hot-toast'
 import { questionsQuantity } from '../Test'
-import useSendEmail from '@/hooks/useSendEmail'
+import { EmailFormSection } from './components/EmailFormSection'
+import { FamousPeopleSection } from './components/FamousPeopleSection'
+import { PaymentSection } from './components/PaymentSection'
+import { ReasonsSection } from './components/ReasonsSection'
+import { ResultSection } from './components/ResultSection'
+import { StatsSection } from './components/StatsSection'
+import { TestimonialsSection } from './components/TestimonialsSection'
+
+const testimonials = [
+	{
+		name: 'Anna Müller',
+		comment:
+			'I needed help and contacted customer service... EXCELLENT!!! Great listening skills and competence. Problem solved in a few emails. Attentive advisor who solved my problem (probably caused by my inattention) in a few seconds.',
+		rating: 5,
+	},
+	{
+		name: 'Pierre Dubois',
+		comment:
+			'The customer support team was extremely understanding and helpful. I appreciate their support and highly recommend their platform for both their services and their exceptional customer service.',
+		rating: 5,
+	},
+]
+
+const famousPeople = [
+	{ name: 'Elon Musk', iq: 158 },
+	{ name: 'Donald Trump', iq: 156 },
+	{ name: 'Bill Gates', iq: 160 },
+	{ name: 'YOU', iq: '?' },
+]
+
+const whyList = [
+	{
+		title: 'Based on Psychological Studies',
+		text: 'Our tests are based on methods used in psychological studies, ensuring accurate and dependable results.',
+	},
+	{
+		title: 'Built on Cognitive Science',
+		text: 'Your report highlights your strengths and areas for growth using proven cognitive science principles, helping you to learn new skills faster.',
+	},
+	{
+		title: 'Designed by Neuroscientists',
+		text: 'Gain anytime access to a library of neuroscience-backed games to improve memory, focus, and problem-solving skills.',
+	},
+	{
+		title: 'Trusted by Thousands Globally',
+		text: 'IQ Test is relied on by people globally for accurate insights that support better decision-making and build confidence.',
+	},
+]
 
 const TestCompleted: React.FC = ({}) => {
 	const { handleSubmit, register } = useForm<{ email: string }>()
@@ -47,110 +91,53 @@ const TestCompleted: React.FC = ({}) => {
 		}
 	}
 
-	return loginFormVisible ? (
-		<div className='w-[500px] mx-auto max-[520px]:w-[300px]'>
-			<Login callback={() => setLoginFormVisible(false)} />
-		</div>
-	) : (
-		<div className='text-center mt-10 flex flex-col items-center gap-5'>
-			<h2 className='text-primary font-bold text-5xl max-[450px]:text-4xl'>
-				Test Completed
-			</h2>
-			{!user ? (
-				<>
-					<h3 className='text-center mt-10 text-3xl inline-flex items-center gap-3'>
-						Enter your email
-					</h3>
-					<form
-						className='flex flex-col items-center gap-5 mt-5 w-[400px] max-[420px]:w-[300px]'
-						onSubmit={handleSubmit(checkUser)}
-					>
-						<Input
-							required
-							{...register('email', { required: true })}
-							type='email'
-							placeholder='123@gmail.com'
-							className='w-full'
+	if (loginFormVisible) {
+		return (
+			<div className='w-[500px] mx-auto max-[520px]:w-[300px]'>
+				<Login callback={() => setLoginFormVisible(false)} />
+			</div>
+		)
+	}
+
+	return (
+		<>
+			<div className='w-full flex flex-col items-center justify-center mt-6 mb-2'>
+				<h1 className='text-4xl max-sm:text-2xl font-extrabold text-center leading-tight'>
+					<span className='text-primary'>Discover</span> Where You Stand Among{' '}
+					<span className='text-primary'>Others</span>
+				</h1>
+				<p className='text-lg text-gray-500 mt-2 text-center max-w-xl'>
+					See how your IQ compares to world-famous minds and get your
+					personalized results instantly.
+				</p>
+			</div>
+			<FamousPeopleSection />
+			<div className='mt-10 grid grid-cols-[1.2fr_2fr] gap-10 max-lg:grid-cols-1 max-w-6xl mx-auto px-4 w-full'>
+				<div className='flex flex-col gap-8 items-stretch'>
+					<ReasonsSection />
+					<StatsSection />
+					<TestimonialsSection testimonials={testimonials} />
+				</div>
+				<div className='flex flex-col items-center justify-center min-h-[400px] gap-8 bg-white/70 rounded-2xl p-4 shadow-lg w-full'>
+					{!user ? (
+						<EmailFormSection
+							handleSubmit={handleSubmit}
+							checkUser={checkUser}
+							register={register}
 						/>
-						<Button type='submit'>Get Results</Button>
-					</form>
-				</>
-			) : user?.tier === TIER.BASIC ? (
-				<>
-					<div className="bg-yellow-50 border border-yellow-200 rounded-2xl p-6 text-center max-w-2xl mx-auto mt-20 shadow-md">
-  <h3 className="text-3xl font-semibold flex items-center justify-center gap-2 mb-4">
-    🎁 Subscription = A Chance to Win an iPhone 15!
-  </h3>
-  <p className="text-lg mb-2">
-    Subscribe today and you’ll be automatically entered into our iPhone 15 giveaway 📱
-  </p>
-  <ul className="text-left text-base list-disc list-inside mb-4 space-y-1">
-    <li>📆 Winner announced on May 1st</li>
-    <li>🎯 Only paid subscribers are eligible</li>
-    <li>💡 More subscriptions = more chances to win</li>
-  </ul>
-  <p className="text-lg font-medium">
-    👉 Click below to subscribe and secure your chance to win!
-  </p>
-</div>
-
-					<div className='flex flex-col items-start p-5 w-1/2 bg-white border-[1px] border-[rgba(0,0,0,.3)] rounded-xl max-lg:w-[80%] max-[500px]:w-[95%]'>
-						<div className='flex items-center justify-between w-full'>
-							<p className='text-2xl'>Total Due:</p>
-							<h4 className='text-primary font-bold text-3xl'>$0.60</h4>
-						</div>
-						<div className='flex items-center justify-center gap-4 w-full'>
-							<Image src='/visa.svg' alt='Visa' width={60} height={30} />
-							<Image
-								src='/mastercard.svg'
-								alt='Mastercard'
-								width={60}
-								height={30}
-							/>
-						</div>
-						<Button className='w-2/3 !p-0 text-lg mx-auto mt-6'>
-							<Link
-								className='w-full h-full py-4 px-6 block'
-								href={
-									user
-										? !user.customerId
-											? (`${process.env.NEXT_PUBLIC_STRIPE_TRIAL_LINK}?prefilled_email=${user.email}` as string)
-											: (`${process.env.NEXT_PUBLIC_STRIPE_MONTHLY_PLAN_LINK}?prefilled_email=${user.email}` as string)
-										: '/login'
-								}
-							>
-								Get my results
-							</Link>
-						</Button>
-						<p className='text-base-500 text-center mt-3 text-xs w-full'>
-							
-							<br />
-							
-						</p>
-
-						<div className='w-full flex mt-12 items-center mx-auto text-center justify-center gap-4'>
-							<Button onClick={async () => refresh()}>Refresh</Button>
-							<p className='text-left'>
-								Click here after payment, your test results will be available
-							</p>
-						</div>
-					</div>
-				</>
-			) : (
-				<>
-					<h3 className='text-center mt-20 text-3xl inline-flex items-center gap-3'>
-						Your IQ:{' '}
-						<span className='text-6xl text-primary font-black'>{iqScore}</span>
-					</h3>
-					<h3 className='text-center mt-8 text-2xl'>
-						Correct answers: {score >= 20 ? 20 : score} / {questionsQuantity}
-					</h3>
-					<Button onClick={async () => push('/test')} className='mt-5'>
-						Try Again
-					</Button>
-				</>
-			)}
-		</div>
+					) : user?.tier === TIER.BASIC ? (
+						<PaymentSection user={user} refresh={refresh} />
+					) : (
+						<ResultSection
+							iqScore={iqScore}
+							score={score}
+							questionsQuantity={questionsQuantity}
+							push={push}
+						/>
+					)}
+				</div>
+			</div>
+		</>
 	)
 }
 

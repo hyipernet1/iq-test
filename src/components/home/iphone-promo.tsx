@@ -1,6 +1,6 @@
 export function IPhonePromo() {
   return (
-    <div className="bg-yellow-100 border border-yellow-300 rounded-xl p-6 text-center max-w-2xl mx-auto mt-10 shadow-md">
+    <div className="bg-yellow-100 border border-yellow-300 rounded-xl p-6 text-center max-w-2xl mx-auto my-10 shadow-md">
       <h3 className="text-2xl font-bold flex items-center justify-center gap-2 mb-3">
         🎁 Take the Test — Win an iPhone 15!
       </h3>
